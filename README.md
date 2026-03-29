@@ -34,6 +34,8 @@ python meme_face.py
 - **C** - Toggle character mode (All / Baby / Monkey / Shrek)
 - **Q** - Quit
 
+PRESS Q to exit on the app
+
 ## Requirements
 
 - Python 3.8+
