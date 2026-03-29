@@ -1,4 +1,4 @@
-# Meme Face 👶🐵
+# Aura Farm Meme Face FR FR 👶🐵
 
 A fun face/gesture tracking app that mirrors your expressions with baby, monkey, and Shrek images!
 
@@ -41,4 +41,4 @@ python meme_face.py
 
 ## Credits
 
-Made with ❤️ using MediaPipe for face and hand tracking.
+Made with using MediaPipe for face and hand tracking.
