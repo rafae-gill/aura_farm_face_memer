@@ -1,46 +1,53 @@
 # Aura Farm Meme Face FR FR 👶🐵
 
-A fun face/gesture tracking app that mirrors your expressions with baby, monkey, and Shrek images!
+Real-time face and hand-gesture tracking that mirrors your expressions as memes: pull a face
+at your webcam and a baby, a monkey or Shrek pulls it back. Built for a friend, for fun.
 
-## Features
+## How it works
 
-- Real-time face and hand tracking using MediaPipe
-- Multiple character modes: Baby, Monkey, Shrek, or All
-- Various gesture triggers:
-  - **Neutral** - Normal face → Baby
-  - **Hand raised** - Fist near face → Baby with hand
-  - **Look side** - Turn head + open mouth → Baby looking side
-  - **Look down** - Tilt down + tongue out → Baby looking down
-  - **Bite finger** - Finger extended near face → Monkey biting finger
-  - **Point up** - Point finger up → Monkey pointing
-  - **Praying** - Both hands together → Monkey holding hands
-  - **Smolder** - Head really tilted + looking side/down → Shrek smolder
-  - **Stinky** - Cover nose + raise other hand → Nick Wilde gif
+Each webcam frame goes through two [MediaPipe](https://ai.google.dev/edge/mediapipe) models:
 
-## Installation
+- **Face Landmarker**: 478 face landmarks plus *blendshapes*, scores for things like "mouth
+  open" or "tongue out". Head pose (turned, tilted, looking down) is estimated from the
+  landmarks.
+- **Hand Landmarker**: 21 points per hand, used to tell where your hands are relative to
+  your face.
+
+A small set of rules maps that to a gesture, and the gesture to a meme. Both models are
+downloaded automatically on first run.
+
+## Gestures
+
+| Do this | You get |
+|---|---|
+| Normal face | 👶 Baby |
+| Fist near your face | 👶 Baby with hand raised |
+| Turn your head + open your mouth | 👶 Baby looking to the side |
+| Tilt down + stick your tongue out | 👶 Baby looking down |
+| Extended finger near your face | 🐵 Monkey biting finger |
+| Point your index finger up, hand raised | 🐵 Monkey pointing |
+| Both hands together | 🐵 Monkey praying |
+| Head really tilted + looking side/down | 🟢 Shrek smolder |
+| Cover your nose + raise the other hand | 🦊 Nick Wilde, "stinky" |
+
+## Run it
+
+Needs a webcam and Python 3.9 or newer (check that [MediaPipe](https://pypi.org/project/mediapipe/)
+supports your Python version).
 
 ```bash
 pip install -r requirements.txt
-```
-
-## Usage
-
-```bash
 python meme_face.py
 ```
 
-### Controls
-- **V** - Toggle tracking view (Off / Lines / Mask)
-- **C** - Toggle character mode (All / Baby / Monkey / Shrek)
-- **Q** - Quit
+| Key | Does |
+|---|---|
+| `V` | Tracking overlay: off / lines / mask |
+| `C` | Character set: all / baby / monkey / Shrek |
+| `Q` | Quit |
 
-PRESS Q to exit on the app
+## Built with
 
-## Requirements
+Python · OpenCV · MediaPipe (Face Landmarker + Hand Landmarker) · NumPy · Pillow
 
-- Python 3.8+
-- Webcam
-
-## Credits
-
-Made with using MediaPipe for face and hand tracking.
+<sub>Meme images and GIFs belong to their respective owners and are used here for fun.</sub>
